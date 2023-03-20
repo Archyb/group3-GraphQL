@@ -5,7 +5,9 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { join } from 'path';
-import { GraphqlExceptionFilter } from "./errorHandler.helper";
+
+import { APP_FILTER } from "@nestjs/core";
+import { ExceptionsLoggerFilter } from "./errorHandler.helper";
 
 @Module({
   imports: [
@@ -15,6 +17,9 @@ import { GraphqlExceptionFilter } from "./errorHandler.helper";
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, AppResolver,GraphqlExceptionFilter],
+  providers: [AppService, AppResolver,{
+    provide: APP_FILTER,
+    useClass: ExceptionsLoggerFilter,
+  }],
 })
 export class AppModule {}

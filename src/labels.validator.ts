@@ -6,6 +6,7 @@ import type {
 } from 'class-validator'
 import { registerDecorator } from 'class-validator'
 import { ValidatorConstraint } from 'class-validator'
+import { ExceptionsLoggerFilter } from "./errorHandler.helper";
 
 
 @ValidatorConstraint({ name: 'labelIds', async: false })
@@ -18,7 +19,7 @@ export class IsLabelValidConstraint implements ValidatorConstraintInterface {
     console.table(args)
     //try me !
     //return false
-		return true
+	 	return false
 	}
 
 	defaultMessage(args: ValidationArguments) {

@@ -18,7 +18,6 @@ export class AppResolver {
     input: SendProductsInput
   ): Promise<string> {
     console.table(input.productsWithIngredients)
-
   return "ok"
   }
 
